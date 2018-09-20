@@ -11,7 +11,7 @@ def rec_russian(a,b):
 print(rec_russian(100123,2**24))
 print(100123*(2**24))
 
-# find_eulerian_tour: Finds a Eulerian Tour in a graph (each node traversed exactly once, starting and ending at same node)
+# FIND_EULERIAN_TOUR: Finds a Eulerian Tour in a graph (each node traversed exactly once, starting and ending at same node)
 # Original Publisher: Wentao - StackOverflow Jul 15 '16 at 23:56
 # Input:        A graph represented as a list of tuples (edged between nodes)
 # Output:       A list of nodes that represent a Eulerian Tour
