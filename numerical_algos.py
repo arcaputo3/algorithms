@@ -1,3 +1,4 @@
+# Import relevant packages (no numpy, math package only for testing)
 import random
 import math
 
@@ -9,8 +10,11 @@ def sim_circle(r=1, iters=100000):
     for i in range(iters):
         x = random.random()
         y = random.random()
+        # This simulates a point in the quarter circle region of the first quadrant
         if x**2 + y**2 <= 1:
             count += 1
+    # Return number of counts that landed in circle divided by total iterations
+    # Visually, this is the area of the circle incribed in an r x r square
     return 4*r**2*count/iters
 
 # Testing
