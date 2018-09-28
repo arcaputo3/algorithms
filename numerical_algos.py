@@ -26,7 +26,7 @@ def all_primes_before_N(N):
                 break
         else:
             print(p)
-            #print(is_prime(p)) # Test function
+            print(is_prime(p)) # Test function
 
 # IS_PRIME:     Input: num (positive integer)
 #               Output: string explaining whether or not num is is_prime
@@ -36,7 +36,7 @@ def is_prime(num):
     # prime numbers are greater than 1
     if num > 1:
        # check for factors
-       for i in range(2,num):
+       for i in range(2, int(math.sqrt(num))+1):
            if (num % i) == 0:
                print(num,"is not a prime number")
                print(i,"times",num//i,"is",num)
@@ -51,3 +51,4 @@ def is_prime(num):
 
 # Testing
 print(all_primes_before_N(100))
+print(is_prime(497))
