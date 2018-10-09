@@ -12,3 +12,4 @@ print(merge_the_tools('AABCAAADA',3))
 print(list(range(0,9+1,3)))
 s = 'AABCAAADA'
 print(s[0:3])
+print(s[3:])

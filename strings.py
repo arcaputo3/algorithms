@@ -31,3 +31,6 @@ print(prob_of_comb(4,'a a b c',2))
 from itertools import product
 
 print(list(product(*([1,2,3],[5,5,6],[7,8,9]))))
+
+s = 'kkkk'
+print([s[i:j+1] for i in range(len(s)) for j in range(i,len(s))])
