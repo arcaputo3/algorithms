@@ -1,7 +1,8 @@
 # Import relevant packages (no numpy, math package only for testing)
 import random
 import math
-
+import numpy as np
+import matplotlib.pyplot as plt
 # SIM_CIRCLE:   Input: Radius r (positive real) and a number of iterations iters (large natural number)
 #                      Default: radius 1, iters 100000
 #               Output: Simulated area of the circle using Monte Carlo method
@@ -40,6 +41,7 @@ def is_prime(num):
     # prime numbers are greater than 1
     if num > 1:
        # check for factors
+       # only need to check up to sqrt(num)
        for i in range(2, int(math.sqrt(num))+1):
            if (num % i) == 0:
                print(num,"is not a prime number")
@@ -56,3 +58,43 @@ def is_prime(num):
 # Testing
 print(all_primes_before_N(100))
 print(is_prime(497))
+
+# COIN_TOSS_GAME:   Computes the value of a game where our values increase evertime we flip heads and the game stops when we flip tails
+#          Input:   Function of growth, iters (int)
+#          Output:  Simulated result averaged over number of iters
+
+def coin_toss_game(f = lambda x: x + 1, init = False, iters = 10000):
+    total_winnings = 0
+    for _ in range(iters):
+        winnings = 0
+        # Set initial toss for multiplicative functions
+        if init:
+            coin = random.random()
+            if coin <= 0.5:
+                winnings = 1
+                coin = random.random()
+                while coin <= 0.5:
+                    winnings = f(winnings)
+                    coin = random.random()
+        else:
+            coin = random.random()
+            while coin <= 0.5:
+                winnings = f(winnings)
+                coin = random.random()
+
+        total_winnings += winnings
+
+    return total_winnings/iters
+
+print(coin_toss_game())
+for i in range(2,10):
+    print(coin_toss_game(f = lambda x: x + i))
+
+'''
+x = []
+for i in range(10000):
+    x.append(coin_toss_game(f = lambda x: 2*x))
+
+plt.plot(np.array(x))
+plt.show()
+'''
