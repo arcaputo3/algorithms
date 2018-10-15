@@ -59,7 +59,7 @@ def is_prime(num):
 print(all_primes_before_N(100))
 print(is_prime(497))
 
-# COIN_TOSS_GAME:   Computes the value of a game where our values increase evertime we flip heads and the game stops when we flip tails
+# COIN_TOSS_GAME:   Computes the value of a game where our values increase (depending on ) evertime we flip heads and the game stops when we flip tails
 #          Input:   Function of growth, iters (int)
 #          Output:  Simulated result averaged over number of iters
 
@@ -89,12 +89,14 @@ def coin_toss_game(f = lambda x: x + 1, init = False, iters = 10000):
 print(coin_toss_game())
 for i in range(2,10):
     print(coin_toss_game(f = lambda x: x + i))
+    # We see that E_{X_t}[f(x)=x+i] = i
 
-'''
 x = []
-for i in range(10000):
-    x.append(coin_toss_game(f = lambda x: 2*x))
+for i in range(1000):
+    x.append(coin_toss_game(f = lambda x: 2*x, init=True))
+    # Although E_{X_t}[f(x)=2*x] = 1/2 + 1/2 + ... = infinity,
+    # our game always terminates here, since the probability of a sequence of infinite heads vanishes as n -> inf.
+    # Plotting, we get very high variance.
 
 plt.plot(np.array(x))
 plt.show()
-'''

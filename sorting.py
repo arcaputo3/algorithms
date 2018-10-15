@@ -17,7 +17,7 @@ def insertion_sort(arr):
     return arr
 
 
-# MERGE:        Takes as input two sorted lists and merges them
+# MERGE:        (Sub Routine) Takes as input two sorted lists and merges them
 # Input:        ARR1, ARR2, sorted float (int) lists
 # Output:       A single merged list containing each element of ARR1 and ARR2
 def merge(arr1, arr2):
