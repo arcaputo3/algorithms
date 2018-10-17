@@ -3,6 +3,7 @@ import random
 import math
 import numpy as np
 import matplotlib.pyplot as plt
+
 # SIM_CIRCLE:   Input: Radius r (positive real) and a number of iterations iters (large natural number)
 #                      Default: radius 1, iters 100000
 #               Output: Simulated area of the circle using Monte Carlo method
@@ -18,6 +19,7 @@ def sim_circle(r=1, iters=100000):
     # Visually, this is the area of the circle incribed in an r x r square
     return 4*r**2*count/iters
 
+
 # Testing
 print(sim_circle(r=4))
 print(math.pi*4**2)
@@ -32,6 +34,7 @@ def all_primes_before_N(N):
         else:
             print(p)
             print(is_prime(p)) # Test function
+
 
 # IS_PRIME:     Input: num (positive integer)
 #               Output: string explaining whether or not num is is_prime
@@ -54,6 +57,7 @@ def is_prime(num):
     # or equal to 1, it is not prime
     else:
        print(num,"is not a prime number")
+
 
 # Testing
 print(all_primes_before_N(100))
@@ -85,6 +89,7 @@ def coin_toss_game(f = lambda x: x + 1, init = False, iters = 10000):
         total_winnings += winnings
 
     return total_winnings/iters
+
 
 print(coin_toss_game())
 for i in range(2,10):
