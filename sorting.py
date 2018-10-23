@@ -86,22 +86,9 @@ def full_test(sort_func, test_arr, test_dict):
     test_dict[func_name] = end-start
     # Test for correctness
     pass_test(sort_func,arr)
-    print("Time taken: {} seconds".format(test_dict[func_name]))
+    print("{}: {} seconds".format(func_name,test_dict[func_name]))
     print()
 
 
 full_test(insertion_sort, arr, test)
 full_test(merge_sort, arr, test)
-print(test)
-
-def unimodalMax(arr):
-    # Base Case
-    if len(arr) == 1:
-        return arr[0]
-    mid = len(arr)//2-1
-    if arr[mid] < arr[mid+1]:
-        return unimodalMax(arr[mid+1:])
-    else:
-        return unimodalMax(arr[:mid+1])
-
-print(unimodalMax([1,2,3,4,5,6,4,3,2,1]))
