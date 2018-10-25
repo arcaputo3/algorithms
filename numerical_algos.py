@@ -1,8 +1,10 @@
+
 # Import relevant packages (no numpy, math package only for testing)
 import random
 import math
 import numpy as np
 import matplotlib.pyplot as plt
+'''
 # SIM_CIRCLE:   Input: Radius r (positive real) and a number of iterations iters (large natural number)
 #                      Default: radius 1, iters 100000
 #               Output: Simulated area of the circle using Monte Carlo method
@@ -86,15 +88,52 @@ def coin_toss_game(f = lambda x: x + 1, init = False, iters = 10000):
 
     return total_winnings/iters
 
+# For any f(x) = x + n, E[X_t] = n
 print(coin_toss_game())
 for i in range(2,10):
     print(coin_toss_game(f = lambda x: x + i))
 
-'''
+# For doubling game, expectation is infinite
+# Very many possible outcomes
 x = []
-for i in range(10000):
-    x.append(coin_toss_game(f = lambda x: 2*x))
+for i in range(300):
+    x.append(coin_toss_game(f = lambda x: 2*x, init = True))
 
+print(np.mean(x))
 plt.plot(np.array(x))
 plt.show()
 '''
+
+# BIRTHDAY_PROBLEM:     Simulates the expected number of people in a room such that exactly two people share a birthday
+# Input:                iters (int)
+# Output:               Index of first person in line to share birthday with person in front
+# Note:                 Does not count leap years
+
+def birthday_problem(iters = 10000, stop = 1000000):
+    true_count = 0
+    stop_ = 0
+    for _ in range(iters):
+        count = 0
+        bDays = {}
+        while stop>0:
+            stop -= 1
+            next = np.random.randint(365)
+            if next not in bDays.keys():
+                bDays[next] = True
+                count += 1
+            else:
+                true_count += count
+                break
+        if stop == 0:
+            stop_ += 1
+    return true_count/(iters - stop_)
+
+print(birthday_problem())
+
+# BIRTHDAY_LINE_PROBLEM
+# Same as BIRTHDAY_PROBLEM but this time we want to know where we should stand in a line to be the first to share a birthday with someone
+# Input:                iters (int)
+# Output:               Index of first person in line to share birthday with person in front
+# Note:                 Does not count leap year
+
+#def birthday_line_problem():
