@@ -4,7 +4,12 @@ import random
 import math
 import numpy as np
 import matplotlib.pyplot as plt
+<<<<<<< HEAD
 '''
+||||||| merged common ancestors
+=======
+
+>>>>>>> 2d9a4e9047b1afbadef057ec48f0bcfe386c0c9e
 # SIM_CIRCLE:   Input: Radius r (positive real) and a number of iterations iters (large natural number)
 #                      Default: radius 1, iters 100000
 #               Output: Simulated area of the circle using Monte Carlo method
@@ -20,6 +25,7 @@ def sim_circle(r=1, iters=100000):
     # Visually, this is the area of the circle incribed in an r x r square
     return 4*r**2*count/iters
 
+
 # Testing
 print(sim_circle(r=4))
 print(math.pi*4**2)
@@ -34,6 +40,7 @@ def all_primes_before_N(N):
         else:
             print(p)
             print(is_prime(p)) # Test function
+
 
 # IS_PRIME:     Input: num (positive integer)
 #               Output: string explaining whether or not num is is_prime
@@ -57,11 +64,12 @@ def is_prime(num):
     else:
        print(num,"is not a prime number")
 
+
 # Testing
 print(all_primes_before_N(100))
 print(is_prime(497))
 
-# COIN_TOSS_GAME:   Computes the value of a game where our values increase evertime we flip heads and the game stops when we flip tails
+# COIN_TOSS_GAME:   Computes the value of a game where our values increase (depending on ) evertime we flip heads and the game stops when we flip tails
 #          Input:   Function of growth, iters (int)
 #          Output:  Simulated result averaged over number of iters
 
@@ -88,20 +96,43 @@ def coin_toss_game(f = lambda x: x + 1, init = False, iters = 10000):
 
     return total_winnings/iters
 
+<<<<<<< HEAD
 # For any f(x) = x + n, E[X_t] = n
+||||||| merged common ancestors
+=======
+
+>>>>>>> 2d9a4e9047b1afbadef057ec48f0bcfe386c0c9e
 print(coin_toss_game())
 for i in range(2,10):
     print(coin_toss_game(f = lambda x: x + i))
+    # We see that E_{X_t}[f(x)=x+i] = i
 
+<<<<<<< HEAD
 # For doubling game, expectation is infinite
 # Very many possible outcomes
+||||||| merged common ancestors
+'''
+=======
+>>>>>>> 2d9a4e9047b1afbadef057ec48f0bcfe386c0c9e
 x = []
+<<<<<<< HEAD
 for i in range(300):
     x.append(coin_toss_game(f = lambda x: 2*x, init = True))
+||||||| merged common ancestors
+for i in range(10000):
+    x.append(coin_toss_game(f = lambda x: 2*x))
+=======
+for i in range(1000):
+    x.append(coin_toss_game(f = lambda x: 2*x, init=True))
+    # Although E_{X_t}[f(x)=2*x] = 1/2 + 1/2 + ... = infinity,
+    # our game always terminates here, since the probability of a sequence of infinite heads vanishes as n -> inf.
+    # Plotting, we get very high variance.
+>>>>>>> 2d9a4e9047b1afbadef057ec48f0bcfe386c0c9e
 
 print(np.mean(x))
 plt.plot(np.array(x))
 plt.show()
+<<<<<<< HEAD
 '''
 
 # BIRTHDAY_PROBLEM:     Simulates the expected number of people in a room such that exactly two people share a birthday
@@ -137,3 +168,7 @@ print(birthday_problem())
 # Note:                 Does not count leap year
 
 #def birthday_line_problem():
+||||||| merged common ancestors
+'''
+=======
+>>>>>>> 2d9a4e9047b1afbadef057ec48f0bcfe386c0c9e
