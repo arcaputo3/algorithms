@@ -21,7 +21,6 @@ def sim_circle(r=1, iters=100000):
     return 4*r**2*count/iters
 
 
->>>>>>> e23b1bca91eca528ad84b699d87120dab6c2f39d
 # ALL_PRIMES_BEFORE_N:  Input: N (natural number)
 #                       Output: Each prime number preceding N printed in order
 def all_primes_before_N(N):
@@ -87,7 +86,6 @@ def coin_toss_game(f = lambda x: x + 1, init = False, iters = 10000):
 # Input:                iters (int)
 # Output:               Index of first person in line to share birthday with person in front
 # Note:                 Does not count leap years
-
 def birthday_problem(iters = 10000, stop = 1000000):
     true_count = 0
     stop_ = 0
@@ -106,6 +104,7 @@ def birthday_problem(iters = 10000, stop = 1000000):
         if stop == 0:
             stop_ += 1
     return true_count/(iters - stop_)
+
 
 if __name__ == "__main__":
     # Testing: sim_circle
