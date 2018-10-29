@@ -48,6 +48,7 @@ class Node:
             if self.left is None:
                 return None, None
             # Traverse left
+            # Set parent equal to current node
             return self.left.lookup(val, self)
         # If val is greater than self value, traverse left
         elif val > self.value:
@@ -55,6 +56,7 @@ class Node:
             if self.right is None:
                 return None, None
             # Traverse right
+            # Set parent equal to current node
             return self.right.lookup(val, self)
         # If value is equal to current node, we are done
         # Return current node and its parent
@@ -91,7 +93,6 @@ class Node:
                         parent.right = None
                 else:
                     self.value = None
-
             # If node has one child, make child parent and delete node
             elif children_count == 1:
                 # Check whether child is left or right
@@ -114,7 +115,6 @@ class Node:
                     self.left = n.left
                     self.right = n.right
                     self.value = n.value
-
             # If we have two children, find successor
             else:
                 parent = node
@@ -193,8 +193,8 @@ class Node:
                 return self.right.rank(t) + left_size + 1
 
 
-
-
+# Testing
+# Implementation depends on node and root of node
 root = Node(8)
 root.insert(3)
 root.insert(10)

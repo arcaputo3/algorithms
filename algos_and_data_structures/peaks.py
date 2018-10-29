@@ -19,10 +19,6 @@ def unimodalMax(arr):
         return unimodalMax(arr[:mid+1])
 
 
-# Testing
-# Expect to see 6
-print(unimodalMax([1,2,3,4,5,6,5,4,3,2,1]))
-
 # PEAKFIND:     Takes as input a numeric list and outputs a "peak" value (first one found)
 # Input:        Numeric list arr
 # Output:       Peak value in list (a_{i-1} <= a_i >=  a_{i+1})
@@ -52,12 +48,6 @@ def peakfind(arr):
     else:
         return peakfind(arr[:n//2-1])
 
-
-# Testing
-# Expect to see 100
-print(peakfind(list(range(100))))
-# Expect to see 33
-print(peakfind([0,1,33,2,56]))
 
 # PEAKFIND2D:       Takes as input a numeric matrix and outputs the value at a peak
 # Input:            Numeric list of lists (nxm matrix) mat
@@ -101,10 +91,20 @@ def peakfind2d(mat):
     else:
         return peakfind2d(mat[n//2+1:])
 
-# Expect to see 3
-print(peakfind2d([[1,2,3],
-                  [3,2,1]]))
-# Expect to see 10
-print(peakfind2d([[1,2,3],
-                  [3,10,5],
-                  [6,9,4]]))
+if __name__ == "__main__":
+    # Testing
+    # Expect to see 6
+    print(unimodalMax([1,2,3,4,5,6,5,4,3,2,1]))
+
+    # Expect to see 100
+    print(peakfind(list(range(100))))
+    # Expect to see 33
+    print(peakfind([0,1,33,2,56]))
+
+    # Expect to see 3
+    print(peakfind2d([[1,2,3],
+                      [3,2,1]]))
+    # Expect to see 10
+    print(peakfind2d([[1,2,3],
+                      [3,10,5],
+                      [6,9,4]]))
