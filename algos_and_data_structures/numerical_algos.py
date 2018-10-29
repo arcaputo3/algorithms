@@ -21,10 +21,7 @@ def sim_circle(r=1, iters=100000):
     return 4*r**2*count/iters
 
 
-# Testing
-print(sim_circle())
-print(math.pi)
-
+>>>>>>> e23b1bca91eca528ad84b699d87120dab6c2f39d
 # ALL_PRIMES_BEFORE_N:  Input: N (natural number)
 #                       Output: Each prime number preceding N printed in order
 def all_primes_before_N(N):
@@ -53,21 +50,15 @@ def is_prime(num):
                break
        else:
            print(num,"is a prime number")
-
     # if input number is less than
     # or equal to 1, it is not prime
     else:
        print(num,"is not a prime number")
 
 
-# Testing
-#print(all_primes_before_N(100))
-#print(is_prime(497))
-
 # COIN_TOSS_GAME:   Computes the value of a game where our values increase (depending on ) evertime we flip heads and the game stops when we flip tails
 #          Input:   Function of growth, iters (int)
 #          Output:  Simulated result averaged over number of iters
-
 def coin_toss_game(f = lambda x: x + 1, init = False, iters = 10000):
     total_winnings = 0
     for _ in range(iters):
@@ -91,27 +82,6 @@ def coin_toss_game(f = lambda x: x + 1, init = False, iters = 10000):
 
     return total_winnings/iters
 
-
-# For any f(x) = x + n, E[X_t] = n
-print(coin_toss_game())
-#for i in range(2,10):
-#    print(coin_toss_game(f = lambda x: x + i))
-    # We see that E_{X_t}[f(x)=x+i] = i
-
-# For doubling game, expectation is infinite
-# Very many possible outcomes
-'''
-x = []
-for i in range(1000):
-    x.append(coin_toss_game(f = lambda x: 2*x, init=True))
-    # Although E_{X_t}[f(x)=2*x] = 1/2 + 1/2 + ... = infinity,
-    # our game always terminates here, since the probability of a sequence of infinite heads vanishes as n -> inf.
-    # Plotting, we get very high variance.
-
-print(np.mean(x))
-plt.plot(np.array(x))
-plt.show()
-'''
 
 # BIRTHDAY_PROBLEM:     Simulates the expected number of people in a room such that exactly two people share a birthday
 # Input:                iters (int)
@@ -137,18 +107,35 @@ def birthday_problem(iters = 10000, stop = 1000000):
             stop_ += 1
     return true_count/(iters - stop_)
 
+if __name__ == "__main__":
+    # Testing: sim_circle
+    print(sim_circle(r=4))
+    print(math.pi*4**2)
 
-print(birthday_problem())
+    # Testing: prime funtions
+    print(all_primes_before_N(100))
+    print(is_prime(497))
 
-# EXPECTED_DICE_ROLL: Uses Monte Carlo to approximate expected value of dice after n rolls
-# Input:              int n number of dice rolls
-# Output:             sum of rolls divided by 6
+    # Testing: coin_toss_game
+    # For any f(x) = x + n, E[X_t] = n
+    print(coin_toss_game())
+    for i in range(2,10):
+        print(coin_toss_game(f = lambda x: x + i))
+        # We see that E_{X_t}[f(x)=x+i] = i
 
-def expected_dice_roll(n):
-    count = 0
-    for i in range(n):
-        roll = np.random.randint(6) + 1
-        count += roll
-    return count
+    # For doubling game, expectation is infinite
+    # Very many possible outcomes
 
-print(expected_dice_roll(1000))
+    x = []
+    for i in range(1000):
+        x.append(coin_toss_game(f = lambda x: 2*x, init=True))
+        # Although E_{X_t}[f(x)=2*x] = 1/2 + 1/2 + ... = infinity,
+        # our game always terminates here, since the probability of a sequence of infinite heads vanishes as n -> inf.
+        # Plotting, we get very high variance.
+
+    print(np.mean(x))
+    plt.plot(np.array(x))
+    plt.show()
+
+    # Testing: Birthday problem
+    print(birthday_problem())
