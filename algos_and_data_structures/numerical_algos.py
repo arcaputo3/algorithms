@@ -22,8 +22,8 @@ def sim_circle(r=1, iters=100000):
 
 
 # Testing
-print(sim_circle(r=4))
-print(math.pi*4**2)
+print(sim_circle())
+print(math.pi)
 
 # ALL_PRIMES_BEFORE_N:  Input: N (natural number)
 #                       Output: Each prime number preceding N printed in order
@@ -61,8 +61,8 @@ def is_prime(num):
 
 
 # Testing
-print(all_primes_before_N(100))
-print(is_prime(497))
+#print(all_primes_before_N(100))
+#print(is_prime(497))
 
 # COIN_TOSS_GAME:   Computes the value of a game where our values increase (depending on ) evertime we flip heads and the game stops when we flip tails
 #          Input:   Function of growth, iters (int)
@@ -91,15 +91,16 @@ def coin_toss_game(f = lambda x: x + 1, init = False, iters = 10000):
 
     return total_winnings/iters
 
+
 # For any f(x) = x + n, E[X_t] = n
 print(coin_toss_game())
-for i in range(2,10):
-    print(coin_toss_game(f = lambda x: x + i))
+#for i in range(2,10):
+#    print(coin_toss_game(f = lambda x: x + i))
     # We see that E_{X_t}[f(x)=x+i] = i
 
 # For doubling game, expectation is infinite
 # Very many possible outcomes
-
+'''
 x = []
 for i in range(1000):
     x.append(coin_toss_game(f = lambda x: 2*x, init=True))
@@ -110,7 +111,7 @@ for i in range(1000):
 print(np.mean(x))
 plt.plot(np.array(x))
 plt.show()
-
+'''
 
 # BIRTHDAY_PROBLEM:     Simulates the expected number of people in a room such that exactly two people share a birthday
 # Input:                iters (int)
@@ -136,12 +137,18 @@ def birthday_problem(iters = 10000, stop = 1000000):
             stop_ += 1
     return true_count/(iters - stop_)
 
+
 print(birthday_problem())
 
-# BIRTHDAY_LINE_PROBLEM
-# Same as BIRTHDAY_PROBLEM but this time we want to know where we should stand in a line to be the first to share a birthday with someone
-# Input:                iters (int)
-# Output:               Index of first person in line to share birthday with person in front
-# Note:                 Does not count leap year
+# EXPECTED_DICE_ROLL: Uses Monte Carlo to approximate expected value of dice after n rolls
+# Input:              int n number of dice rolls
+# Output:             sum of rolls divided by 6
 
-#def birthday_line_problem():
+def expected_dice_roll(n):
+    count = 0
+    for i in range(n):
+        roll = np.random.randint(6) + 1
+        count += roll
+    return count
+
+print(expected_dice_roll(1000))
