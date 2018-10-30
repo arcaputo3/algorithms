@@ -62,7 +62,7 @@ import numpy as np
 test = {}
 
 # Large test array
-arr = list(np.random.randint(1000,size=3000))
+arr = list(np.random.randint(1000,size=10000))
 
 # Testing functions
 def pass_test(sort_func,arr):
@@ -89,6 +89,9 @@ def full_test(sort_func, test_arr, test_dict):
     print("{}: {} seconds".format(func_name,test_dict[func_name]))
     print()
 
+from heaps import heap_sort
 
-full_test(insertion_sort, arr, test)
+#full_test(insertion_sort, arr, test)
 full_test(merge_sort, arr, test)
+full_test(heap_sort, arr, test)
+full_test(sorted, arr, test)
