@@ -86,7 +86,6 @@ def coin_toss_game(f = lambda x: x + 1, init = False, iters = 10000):
 # Input:                iters (int)
 # Output:               Index of first person in line to share birthday with person in front
 # Note:                 Does not count leap years
-
 def birthday_problem(iters = 10000, stop = 1000000):
     true_count = 0
     stop_ = 0
@@ -106,6 +105,7 @@ def birthday_problem(iters = 10000, stop = 1000000):
             stop_ += 1
     return true_count/(iters - stop_)
 
+
 if __name__ == "__main__":
     # Testing: sim_circle
     print(sim_circle(r=4))
@@ -124,7 +124,6 @@ if __name__ == "__main__":
 
     # For doubling game, expectation is infinite
     # Very many possible outcomes
-
     x = []
     for i in range(1000):
         x.append(coin_toss_game(f = lambda x: 2*x, init=True))
