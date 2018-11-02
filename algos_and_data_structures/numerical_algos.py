@@ -110,18 +110,15 @@ if __name__ == "__main__":
     # Testing: sim_circle
     print(sim_circle(r=4))
     print(math.pi*4**2)
-
     # Testing: prime funtions
     print(all_primes_before_N(100))
     print(is_prime(497))
-
     # Testing: coin_toss_game
     # For any f(x) = x + n, E[X_t] = n
     print(coin_toss_game())
     for i in range(2,10):
         print(coin_toss_game(f = lambda x: x + i))
         # We see that E_{X_t}[f(x)=x+i] = i
-
     # For doubling game, expectation is infinite
     # Very many possible outcomes
     x = []

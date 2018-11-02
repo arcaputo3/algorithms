@@ -2,7 +2,6 @@
 
 class Node:
     # Tree node: left and right child + value of node
-
     def __init__(self, val):
         # Node constructor
         # Left and right children
@@ -191,6 +190,28 @@ class Node:
             # Else recurse down right subtree, adding left_size including current node
             else:
                 return self.right.rank(t) + left_size + 1
+
+
+    def rotate(self, kind='left'):
+        if kind == 'left':
+            y, x = self.lookup(self.right.value)
+            if y:
+                if y.left:
+                    x.right = y.left
+                    y.left = x
+                else:
+                    y.left = x
+        elif kind == 'right':
+            x, y = self.lookup(self.left.value)
+            if x:
+                if x.right:
+                    y.left = x.right
+                    x.right = y
+                else:
+                    x.right = y
+
+
+
 
 
 # Testing

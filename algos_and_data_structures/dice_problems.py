@@ -1,14 +1,14 @@
 # Simulate problems for 6 and 30 sided die as seen by Jane Street interview questions
 # Get packages
 import numpy as np
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
 
 # SUM_TO_300
-# In this game, we iteratively roll a 30 sided die and add up each value. 
+# In this game, we iteratively roll a 30 sided die and add up each value.
 # We stop when we reach a sum of greater than or equal to 300.
 # Our goal is to get the most likely outcome by returning most frequent occurences.
 # Out expectation is that since every iteration MUST contain a penultimate sum of 270-299,
-# the most likely outcome will be 300, since each penultimate sum has a probability of reaching 300 
+# the most likely outcome will be 300, since each penultimate sum has a probability of reaching 300
 # While for any other number between 301 and 329, there are less previous states that reach it.
 def sum_to_300(iters = 10000):
     results = []
@@ -24,8 +24,8 @@ def sum_to_300(iters = 10000):
 #print(sum_to_300())
 
 # DICE_CHOICE_GAME
-# In this game, we are given a 6-sided die and want to maximize the result. 
-# We roll the die and then have a choice to keep or discard this value. 
+# In this game, we are given a 6-sided die and want to maximize the result.
+# We roll the die and then have a choice to keep or discard this value.
 # If we discard, we get to roll again and keep this new value.
 # The optimal strategy is to only keep values on our first roll that are greater than the expectation of the roll (3.5)
 #   i.e. values 4,5,6. Otherwise, we roll again. We have a 1/2 chance of keeping our value and 1/2 chance of discarding.
@@ -40,9 +40,23 @@ def dice_choice_game(iters=100000):
             roll = np.random.randint(6)+1
             total_count += roll
     return total_count/iters
-
-
 #print(dice_choice_game())
+
+# MIN_MAX_DICE
+# Expected value of min and max of sum of two dice rolls
+def min_max_dice(iters = 10000):
+    min_ = 0
+    max_ = 0
+    for i in range(iters):
+        roll1 = np.random.randint(6)+1
+        roll2 = np.random.randint(6)+1
+        min_ += min([roll1,roll2])
+        max_ += max([roll1,roll2])
+    return min_/iters,max_/iters
+
+print(min_max_dice())
+print(91/36,161/36)
+
 
 # TWO_PLAYER_30_SIDED_DIE_GAME
 # See https://math.stackexchange.com/questions/377393/30-sided-die-2-player-game
@@ -85,7 +99,7 @@ def full_game(iters,n=30):
     # Create empty total matrices
     total1 = np.zeros((n,n))
     total2 = np.zeros((n,n))
-    # Simulate iters 
+    # Simulate iters
     for _ in range(iters):
         # Get single iter
         mat1,mat2 = two_player_game_iter(n=n)
@@ -189,13 +203,13 @@ def get_best(p1,p2, n=30):
     # Return tuples (strategy_i, expected_payoff_i) for i in {1,2}
     return (bestp1_ind+1, bestp1), (bestp2_ind+1, bestp2)
 
-
+'''
 if __name__ == "__main__":
     # Choose n-sided die
-    n=12
+    n=30
     # Simulate each possible strategy
     # Get each players' payoff for each strategy as well as the optimal strategy (strat)
-    EV1,EV2, strat = find_optimal_strategy(iters=10000,n=n)
+    EV1,EV2, strat = find_optimal_strategy(iters=50000,n=n)
     p1,p2 = strat
     print("Monte Carlo Results:")
     print("Optimal Strategy and Expected Payoff for Player 1: {}".format((p1,EV1)))
@@ -223,5 +237,4 @@ if __name__ == "__main__":
     plt.xlabel('Choice of Player 1')
     plt.ylabel('Expected Payoff')
     plt.show()
-
-
+'''
