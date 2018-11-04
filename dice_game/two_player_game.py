@@ -26,7 +26,7 @@ def two_player_game_iter(n=30):
     for i in range(n):
         for j in range(n):
             # If P1's choice is closer to roll
-            # Add P2's choice to P1's rewards matrix at (i,j) position
+            # Add value of roll to P1's rewards matrix at (i,j) position
             if abs(roll - i) < abs(roll - j):
                 mat1[i,j] += roll+1
             # Similar if P2's choice is closer to roll
