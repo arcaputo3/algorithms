@@ -1,48 +1,5 @@
-# Simulate problems for 6 and 30 sided die as seen by Jane Street interview questions
-# Get packages
 import numpy as np
 import matplotlib.pyplot as plt
-
-# SUM_TO_300
-# In this game, we iteratively roll a 30 sided die and add up each value.
-# We stop when we reach a sum of greater than or equal to 300.
-# Our goal is to get the most likely outcome by returning most frequent occurences.
-# Out expectation is that since every iteration MUST contain a penultimate sum of 270-299,
-# the most likely outcome will be 300, since each penultimate sum has a probability of reaching 300
-# While for any other number between 301 and 329, there are less previous states that reach it.
-def sum_to_300(iters = 10000):
-    results = []
-    for i in range(iters):
-        sum = 0
-        while sum < 300:
-            die = np.random.randint(30)+1
-            sum += die
-        results.append(sum)
-    return max(set(results), key=results.count)
-
-
-#print(sum_to_300())
-
-# DICE_CHOICE_GAME
-# In this game, we are given a 6-sided die and want to maximize the result.
-# We roll the die and then have a choice to keep or discard this value.
-# If we discard, we get to roll again and keep this new value.
-# The optimal strategy is to only keep values on our first roll that are greater than the expectation of the roll (3.5)
-#   i.e. values 4,5,6. Otherwise, we roll again. We have a 1/2 chance of keeping our value and 1/2 chance of discarding.
-# The expected value of this game is therefore (1/6)(4 + 5 + 6) + (1/2)(3.5) = 4.25
-def dice_choice_game(iters=100000):
-    total_count = 0
-    for i in range(iters):
-        roll = np.random.randint(6)+1
-        if roll > 3:
-            total_count += roll
-        else:
-            roll = np.random.randint(6)+1
-            total_count += roll
-    return total_count/iters
-
-
-#print(dice_choice_game())
 
 # TWO_PLAYER_30_SIDED_DIE_GAME
 # See https://math.stackexchange.com/questions/377393/30-sided-die-2-player-game
@@ -200,6 +157,7 @@ if __name__ == "__main__":
     print("Monte Carlo Results:")
     print("Optimal Strategy and Expected Payoff for Player 1: {}".format((p1,EV1)))
     print("Optimal Strategy and Expected Payoff for Player 2: {}".format((p2,EV2)))
+    print()
     # Run simulation using optimal strategy
     player1,player2 = simulate_optimal_game(strat, n=n)
     # Plot outcomes: Notice that player 1 has slight advantage

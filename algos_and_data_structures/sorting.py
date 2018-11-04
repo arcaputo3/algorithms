@@ -91,7 +91,7 @@ def full_test(sort_func, test_arr, test_dict):
 
 from heaps import heap_sort
 
-#full_test(insertion_sort, arr, test)
+full_test(insertion_sort, arr, test)
 full_test(merge_sort, arr, test)
 full_test(heap_sort, arr, test)
 full_test(sorted, arr, test)
