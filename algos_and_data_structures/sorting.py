@@ -80,7 +80,7 @@ def full_test(sort_func, test_arr, test_dict):
     func_name = sort_func.__name__
     # Measure time function takes
     start= timer()
-    ans = sort_func(arr)
+    ans = sort_func(test_arr)
     end = timer()
     # Store time in test dictionary
     test_dict[func_name] = end-start
