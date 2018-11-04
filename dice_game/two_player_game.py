@@ -109,6 +109,10 @@ def simulate_optimal_game(strategy,iters=10000, n=30):
     #   x = (1/2)*(sqrt(2n^2+2n-3)-1)
 # Therefore, if player1 chooses 21 or lower, player2 should choose x+1. Otherwise, player2 should choose x-1.
 # Backsolving for each possible choice of x knowing what player 2 will choose, we land at x=22 and player2 chooses 21.
+
+# CITATION
+# CommonerG (https://math.stackexchange.com/users/74357/commonerg), 30-sided die, 2-player game, URL (version: 2013-05-01): https://math.stackexchange.com/q/377695
+
 def easy_solve(n=30):
     # Use p1 and p2 to store expected payoffs per player
     p1 = []
