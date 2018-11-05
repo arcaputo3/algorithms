@@ -40,7 +40,7 @@ def dice_choice_game(iters=100000):
             roll = np.random.randint(6)+1
             total_count += roll
     return total_count/iters
-#print(dice_choice_game())
+print(dice_choice_game())
 
 # MIN_MAX_DICE
 # Expected value of min and max of sum of two dice rolls
