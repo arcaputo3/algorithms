@@ -40,23 +40,9 @@ def dice_choice_game(iters=100000):
             roll = np.random.randint(6)+1
             total_count += roll
     return total_count/iters
-print(dice_choice_game())
 
-# MIN_MAX_DICE
-# Expected value of min and max of sum of two dice rolls
-def min_max_dice(iters = 10000):
-    min_ = 0
-    max_ = 0
-    for i in range(iters):
-        roll1 = np.random.randint(6)+1
-        roll2 = np.random.randint(6)+1
-        min_ += min([roll1,roll2])
-        max_ += max([roll1,roll2])
-    return min_/iters,max_/iters
 
-print(min_max_dice())
-print(91/36,161/36)
-
+#print(dice_choice_game())
 
 # TWO_PLAYER_30_SIDED_DIE_GAME
 # See https://math.stackexchange.com/questions/377393/30-sided-die-2-player-game
@@ -111,7 +97,7 @@ def full_game(iters,n=30):
 
 # Using full_game, we find the optimal strategy.
 # To do this, we first consider Player 2's optimal strategy for each possible strategy of Player 1.
-# Then, we maximize returns for Player 1 based on what she know's Player 2 will do.
+# Then, we maximize returns for Player 1 based on what she knows Player 2 will do.
 def find_optimal_strategy(iters = 50000, n=30):
     # Get each total
     total1, total2 = full_game(iters=iters, n=n)
@@ -203,13 +189,13 @@ def get_best(p1,p2, n=30):
     # Return tuples (strategy_i, expected_payoff_i) for i in {1,2}
     return (bestp1_ind+1, bestp1), (bestp2_ind+1, bestp2)
 
-'''
+
 if __name__ == "__main__":
     # Choose n-sided die
     n=30
     # Simulate each possible strategy
     # Get each players' payoff for each strategy as well as the optimal strategy (strat)
-    EV1,EV2, strat = find_optimal_strategy(iters=50000,n=n)
+    EV1,EV2, strat = find_optimal_strategy(iters=10000,n=n)
     p1,p2 = strat
     print("Monte Carlo Results:")
     print("Optimal Strategy and Expected Payoff for Player 1: {}".format((p1,EV1)))
@@ -237,10 +223,3 @@ if __name__ == "__main__":
     plt.xlabel('Choice of Player 1')
     plt.ylabel('Expected Payoff')
     plt.show()
-<<<<<<< HEAD:algos_and_data_structures/thirty_sided_die.py
-||||||| merged common ancestors
-
-
-=======
-'''
->>>>>>> c7699a66ccaa1125cba85907c054c98bb44b27b1:algos_and_data_structures/dice_problems.py
