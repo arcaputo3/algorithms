@@ -50,6 +50,22 @@ def merge_sort(arr):
         return merge(merge_sort(arr[:n//2]),merge_sort(arr[n//2:]))
 
 
+# If we have that each element in the list is an integer, i.e. for all i in list, i in {0,1,...,k-1}
+# We can use count sort to get O(n) sorting time
+# COUNT_SORT:       Takes as input an INTEGER list and an int k such that k-1 is largest possible element
+# Input:            int list arr, int k
+# Output:           int list sorted
+def count_sort(arr,k=1000):
+    L = [[] for i in range(k)]
+    n = len(arr)
+    for j in range(n):
+        L[arr[j]].append(arr[j])
+    output = []
+    for i in range(k):
+        if L[i]:
+            output += L[i]
+    return output
+
 # TESTING
 
 # Measure time performance
@@ -62,7 +78,7 @@ import numpy as np
 test = {}
 
 # Large test array
-arr = list(np.random.randint(1000,size=10000))
+arr = list(np.random.randint(1000,size=50000))
 
 # Testing functions
 def pass_test(sort_func,arr):
@@ -91,7 +107,8 @@ def full_test(sort_func, test_arr, test_dict):
 
 from heaps import heap_sort
 
-full_test(insertion_sort, arr, test)
+#full_test(insertion_sort, arr, test)
 full_test(merge_sort, arr, test)
 full_test(heap_sort, arr, test)
 full_test(sorted, arr, test)
+full_test(count_sort, arr, test)

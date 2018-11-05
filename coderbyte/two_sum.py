@@ -68,6 +68,6 @@ if __name__ == "__main__":
     import numpy as np
     test = {}
     test_num = np.random.randint(10)
-    test_arr = np.random.randint(10,size=5000)
+    test_arr = np.random.randint(10,size=1000)
     full_test(twoSum, test_arr, test_num, test)
     full_test(two_sum, test_arr, test_num, test)
