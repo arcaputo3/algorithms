@@ -66,7 +66,8 @@ def count_sort(arr,k=1000):
             output += L[i]
     return output
 
-# TESTING
+
+# ------------------- TESTING ----------------------------
 
 # Measure time performance
 from timeit import default_timer as timer
