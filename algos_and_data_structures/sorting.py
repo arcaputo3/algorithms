@@ -1,14 +1,25 @@
-# Various sorting algorithms
+"""Various sorting algorithms with time tests."""
 
-# INSERTION_SORT:   Takes as input a real valued list and sorts the values from smallest to largest
-# Input:            ARR float (int) list
-# Output:           float (int) list sorted ascending
+# Measure time performance
+from timeit import default_timer as timer
+# Test with random array
+import numpy as np
+# Get heap_sort
+from heaps import heap_sort
+
+
 def insertion_sort(arr):
-    for j in range(1,len(arr)):
+    """Takes as input a real valued list and sorts the values from smallest to largest.
+    Args:
+        arr: float (int) list
+    Returns:
+        float (int) list sorted ascending.
+    """
+    for j in range(1, len(arr)):
         # Current node
         key = arr[j]
         # New index
-        i = j-1
+        i = j - 1
         # Iterate while list behind key is unsorted
         while i >= 0 and arr[i] > key:
             arr[i+1] = arr[i]
@@ -17,10 +28,13 @@ def insertion_sort(arr):
     return arr
 
 
-# MERGE:        (Sub Routine) Takes as input two sorted lists and merges them
-# Input:        ARR1, ARR2, sorted float (int) lists
-# Output:       A single merged list containing each element of ARR1 and ARR2
 def merge(arr1, arr2):
+    """(Sub Routine) Takes as input two sorted lists and merges them.
+    Args:
+        arr1, arr2: sorted float (int) lists
+    Returns:
+        A single merged list containing each element of arr1 and arr2.
+    """
     out = []
     # Iterate while neither list is empty
     while arr1 and arr2:
@@ -37,53 +51,55 @@ def merge(arr1, arr2):
     return out
 
 
-# MERGE_SORT:       Takes as input a real valued list and sorts the values from smallest to largest
-# Input:            float (int) list
-# Output:           float (int) list sorted ascending
 def merge_sort(arr):
+    """Takes as input a real valued list and sorts the values from smallest to largest.
+    Args:
+        arr: float (int) list
+    Returns:
+        float (int) list sorted ascending.
+    """
     n = len(arr)
     # Base case
     if n == 1:
         return arr
-    else:
-        # Recursive step: sort each half of the elements
-        return merge(merge_sort(arr[:n//2]),merge_sort(arr[n//2:]))
+    # Recursive step: sort each half of the elements
+    return merge(merge_sort(arr[:n//2]), merge_sort(arr[n//2:]))
 
 
-# If we have that each element in the list is an integer, i.e. for all i in list, i in {0,1,...,k-1}
-# We can use count sort to get O(n) sorting time
-# COUNT_SORT:       Takes as input an INTEGER list and an int k such that k-1 is largest possible element
-# Input:            int list arr, int k
-# Output:           int list sorted
-def count_sort(arr,k=1000):
-    L = [[] for i in range(k)]
-    n = len(arr)
-    for j in range(n):
-        L[arr[j]].append(arr[j])
+# If we have that each element in the list is an integer,
+# i.e. for all i in list, i in {0,1,...,k-1}
+# we can use count sort to get O(n) sorting time
+def count_sort(arr, k=1000):
+    """ Takes as input an INTEGER list and an int k such that k-1 is largest possible element.
+    Args:
+        arr: int list
+        k:   int
+    Returns:
+        int list sorted.
+    """
+    store = [[] for i in range(k)]
+    for v in arr:
+        store[v].append(v)
     output = []
     for i in range(k):
-        if L[i]:
-            output += L[i]
+        if store[i]:
+            output += store[i]
     return output
 
 
 # ------------------- TESTING ----------------------------
 
-# Measure time performance
-from timeit import default_timer as timer
-
-# Test with random array
-import numpy as np
-
-# Test time storage dictionary
-test = {}
-
-# Large test array
-arr = list(np.random.randint(1000,size=50000))
+############## TESTING ###############
 
 # Testing functions
-def pass_test(sort_func,arr):
-    # Compare sorted function with true sorted array
+def pass_test(sort_func, arr):
+    """ Compare sorted function with true sorted array
+    Args:
+        sort_func:  function for sorting
+        arr:        list to be sorted
+    Returns:
+        Print statements based on success of sorting.
+    """
     sort_array = sorted(arr)
     # Print accordingly
     if sort_func(arr) == sort_array:
@@ -93,23 +109,35 @@ def pass_test(sort_func,arr):
 
 
 def full_test(sort_func, test_arr, test_dict):
+    """ Test for correctness and run time.
+    Args:
+        sort_func:  function for sorting
+        test_arr:   list to be sorted
+        test_dict:  dict for storing results
+    Returns:
+        Print statements based on success of sorting.
+    """
     # Get sort_func name
     func_name = sort_func.__name__
     # Measure time function takes
-    start= timer()
-    ans = sort_func(test_arr)
+    start = timer()
+    sort_func(test_arr)
     end = timer()
     # Store time in test dictionary
     test_dict[func_name] = end-start
     # Test for correctness
-    pass_test(sort_func,arr)
-    print("{}: {} seconds".format(func_name,test_dict[func_name]))
+    pass_test(sort_func, test_arr)
+    print("{}: {} seconds".format(func_name, test_dict[func_name]))
     print()
 
-from heaps import heap_sort
 
-#full_test(insertion_sort, arr, test)
-full_test(merge_sort, arr, test)
-full_test(heap_sort, arr, test)
-full_test(sorted, arr, test)
-full_test(count_sort, arr, test)
+if __name__ == "__main__":
+    # Test time storage dictionary
+    TEST = {}
+    # Large test array
+    ARR = list(np.random.randint(1000, size=50000))
+    #full_test(insertion_sort, arr, test)
+    full_test(merge_sort, ARR, TEST)
+    full_test(heap_sort, ARR, TEST)
+    full_test(sorted, ARR, TEST)
+    full_test(count_sort, ARR, TEST)
