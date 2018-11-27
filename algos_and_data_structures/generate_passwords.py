@@ -13,4 +13,5 @@ for i in range(0,6):
                 for p in all_passwords:
                     if p not in stored.keys():
                         stored[p] = True
+
 print(len(stored.keys()))

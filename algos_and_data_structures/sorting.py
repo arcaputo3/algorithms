@@ -87,8 +87,6 @@ def count_sort(arr, k=1000):
     return output
 
 
-# ------------------- TESTING ----------------------------
-
 ############## TESTING ###############
 
 # Testing functions
