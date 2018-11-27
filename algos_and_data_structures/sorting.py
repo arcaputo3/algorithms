@@ -1,4 +1,4 @@
-"""Various sorting algorithms with time tests."""
+""" Various sorting algorithms with time tests. """
 
 # Measure time performance
 from timeit import default_timer as timer
@@ -9,7 +9,7 @@ from heaps import heap_sort
 
 
 def insertion_sort(arr):
-    """Takes as input a real valued list and sorts the values from smallest to largest.
+    """ Takes as input a real valued list and sorts the values from smallest to largest.
     Args:
         arr: float (int) list
     Returns:
@@ -29,7 +29,7 @@ def insertion_sort(arr):
 
 
 def merge(arr1, arr2):
-    """(Sub Routine) Takes as input two sorted lists and merges them.
+    """ (Sub Routine) Takes as input two sorted lists and merges them.
     Args:
         arr1, arr2: sorted float (int) lists
     Returns:
@@ -52,7 +52,7 @@ def merge(arr1, arr2):
 
 
 def merge_sort(arr):
-    """Takes as input a real valued list and sorts the values from smallest to largest.
+    """ Takes as input a real valued list and sorts the values from smallest to largest.
     Args:
         arr: float (int) list
     Returns:
