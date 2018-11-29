@@ -8,7 +8,7 @@ def fib(n):
 	a = 0
 	b = 1
 	for _ in range(n):
-		a,b = b,a+b
+		a, b = b, a + b
 	return a
 
 
@@ -19,9 +19,9 @@ def fib(n):
 def dyn_fib(n):
     if n <= 2:
         return 1
-    arr = [1,1]
-    for i in range(2,n):
-        arr.append(arr[i-1]+arr[i-2])
+    arr = [1, 1]
+    for i in range(2, n):
+        arr.append(arr[i-1] + arr[i-2])
     return arr[-1]
 
 
@@ -33,7 +33,7 @@ def slow_fib(n):
 	if n <= 2:
 		return 1
 	else:
-		return slow_fib(n-1)+slow_fib(n-2)
+		return slow_fib(n - 1) + slow_fib(n - 2)
 
 
 # We can improve slow_fib by memorizing values at each call, i.e.
@@ -49,10 +49,10 @@ def memo_fib(n):
         if n <= 2:
             result = 1
         else:
-            result = memo_fib_(n-1, memo) + memo_fib_(n-2, memo)
+            result = memo_fib_(n - 1, memo) + memo_fib_(n - 2, memo)
         memo[n] = result
         return result
-    return memo_fib_(n,{})
+    return memo_fib_(n, {})
 
 
 def full_test(func, test_num, test_dict):
@@ -76,8 +76,8 @@ if __name__ == "__main__":
     full_test(fib, num, test)
     full_test(dyn_fib, num, test)
     full_test(memo_fib, num, test)
-    test_view = [ (v,k) for k,v in test.items() ]
+    test_view = [(v, k) for k, v in test.items()]
     test_view.sort() # natively sort tuples by first element
     print("From fastest to slowest:")
-    for v,k in test_view:
+    for v, k in test_view:
         print("%s" % k)

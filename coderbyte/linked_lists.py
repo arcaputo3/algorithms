@@ -31,3 +31,35 @@ while fastPointer.next != None and fastPointer.next.next != None:
 
 # slowPointer is now at the middle node in the linked list
 print(slowPointer.data)
+
+
+# Now, let's implement a doubly linked list
+# Note that we default to a single lis
+class Dnode(Node):
+    def __init__(self, data, next, prev = None):
+        Node.__init__(self, data, next)
+        self.prev = prev
+
+# setup some nodes
+# a doubly linked list looks as follows:
+# (head) n5 <-> n4 <-> n3 <-> n2 <-> n1 (tail)
+n5 = Dnode(5, n4, None)
+n4 = Dnode(4, n3, n5)
+n3 = Dnode(3, n2, n4)
+n2 = Dnode(2, n1, n3)
+n1 = Dnode(1, None, n2)
+
+head = n5
+tail = n1
+
+# Now let's implement the same algorithm, but starting at the tail.
+fastPointer = slowPointer = tail
+
+# loop through the linked list
+# when fastPointer reaches the end of the list
+# then slowPointer will be at the middle node
+while fastPointer.prev != None and fastPointer.prev.prev != None:
+  fastPointer = fastPointer.prev.prev
+  slowPointer = slowPointer.prev
+
+print(slowPointer.data)
