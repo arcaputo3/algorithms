@@ -8,8 +8,43 @@ import numpy as np
 from heaps import heap_sort
 
 
+def bubble_sort(arr):
+    """ Takes as input a real valued list and sorts the values from smallest to largest.
+        IN PLACE
+    Args:
+        arr: float (int) list
+    Returns:
+        float (int) list sorted ascending.
+    """
+    for i, v_i in enumerate(arr):
+        for j, v_j in enumerate(arr):
+            if v_i > v_j:
+                arr[i], arr[j] = arr[j], arr[i]
+    return arr
+
+
+def selection_sort(arr):
+    """ Takes as input a real valued list and sorts the values from smallest to largest.
+    Args:
+        arr: float (int) list
+    Returns:
+        float (int) list sorted ascending.
+    """
+    arr_sorted = []
+    while arr:
+        lowest = arr[0]
+        low_ind = 0
+        for i, v in enumerate(arr[1:]):
+            if v < lowest:
+                lowest = v
+                low_ind = i+1
+        arr_sorted.append(arr.pop(low_ind))
+    return arr_sorted
+
+
 def insertion_sort(arr):
     """ Takes as input a real valued list and sorts the values from smallest to largest.
+        IN PLACE
     Args:
         arr: float (int) list
     Returns:
@@ -98,7 +133,7 @@ def pass_test(sort_func, arr):
     Returns:
         Print statements based on success of sorting.
     """
-    sort_array = sorted(arr)
+    sort_array = sorted(arr[:])
     # Print accordingly
     if sort_func(arr) == sort_array:
         print("Test Passed")
@@ -122,7 +157,7 @@ def full_test(sort_func, test_arr, test_dict):
     sort_func(test_arr)
     end = timer()
     # Store time in test dictionary
-    test_dict[func_name] = end-start
+    test_dict[func_name] = end - start
     # Test for correctness
     pass_test(sort_func, test_arr)
     print("{}: {} seconds".format(func_name, test_dict[func_name]))
@@ -131,11 +166,15 @@ def full_test(sort_func, test_arr, test_dict):
 
 if __name__ == "__main__":
     # Test time storage dictionary
-    TEST = {}
+    test = {}
     # Large test array
-    ARR = list(np.random.randint(1000, size=50000))
-    #full_test(insertion_sort, arr, test)
-    full_test(merge_sort, ARR, TEST)
-    full_test(heap_sort, ARR, TEST)
-    full_test(sorted, ARR, TEST)
-    full_test(count_sort, ARR, TEST)
+    ARR = list(np.random.randint(1000, size=1000))
+    full_test(bubble_sort, ARR, test)
+    full_test(insertion_sort, ARR, test)
+    full_test(merge_sort, ARR, test)
+    full_test(heap_sort, ARR, test)
+    full_test(sorted, ARR, test)
+    full_test(count_sort, ARR, test)
+    full_test(selection_sort, ARR, test)
+    for key, val in test.items():
+        print('{} is {} times as fast as {}'.format('sorted', val / test['sorted'], key))
