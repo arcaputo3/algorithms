@@ -23,7 +23,6 @@ print(palindrome(5))
 # PALINDROME_:   Prints palindromes up to size 2*n-1 starting with 1 (see example)
 # INPUT:        int n
 # OUTPUT:       palindromes up to n
-
 def palindrome_(n):
     for i in range(1,n+1):
         print(int((10**i-1)/9)**2)

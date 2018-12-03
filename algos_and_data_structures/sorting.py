@@ -4,6 +4,7 @@
 from timeit import default_timer as timer
 # Test with random array
 import numpy as np
+import random
 # Get heap_sort
 from heaps import heap_sort
 
@@ -16,12 +17,20 @@ def bubble_sort(arr):
     Returns:
         float (int) list sorted ascending.
     """
-    for i, v_i in enumerate(arr):
-        for j, v_j in enumerate(arr):
-            if v_i > v_j:
-                arr[i], arr[j] = arr[j], arr[i]
-    return arr
+    n = len(arr)
 
+    # Traverse through all array elements
+    for i in range(n):
+
+        # Last i elements are already in place
+        for j in range(0, n-i-1):
+
+            # traverse the array from 0 to n-i-1
+            # Swap if the element found is greater
+            # than the next element
+            if arr[j] > arr[j+1] :
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+    return arr
 
 def selection_sort(arr):
     """ Takes as input a real valued list and sorts the values from smallest to largest.
@@ -122,6 +131,46 @@ def count_sort(arr, k=1000):
     return output
 
 
+def partition(A, low, high):
+    """ Partitions a list around a random pivot.
+    A[i] <= A[pivot_index] <= A[j] for all 0 <= i < pivot_index < j < len(A). """
+    # Randomly swap first element
+    r = random.randint(low, high)
+    A[low], A[r] = A[r], A[low]
+    # Initialize pivot
+    pivot = low
+    for i in range(low + 1, high + 1):
+        # If current element less than pivot element,
+        # swap current with pivot index
+        if A[i] < A[low]:
+            # Increment pivot index
+            pivot += 1
+            A[i], A[pivot] = A[pivot], A[i]
+    # Correctly place pivot
+    A[pivot], A[low] = A[low], A[pivot]
+    return pivot
+
+
+def quicksort(A):
+    """ Takes as input a real valued list and sorts the values from smallest to largest.
+    Args: 
+        arr: float (int) list
+    Returns:
+        float (int) list sorted ascending.
+    """
+    def _quicksort(A, low, high):
+        """ Sub-routine that supports indexing.
+        """
+        if high <= low:
+            return A
+        else:
+            p = partition(A, low, high)
+            _quicksort(A, low, p - 1)
+            _quicksort(A, p + 1, high)
+        return A
+    return _quicksort(A, 0, len(A) - 1)
+
+
 ############## TESTING ###############
 
 # Testing functions
@@ -135,7 +184,7 @@ def pass_test(sort_func, arr):
     """
     sort_array = sorted(arr[:])
     # Print accordingly
-    if sort_func(arr) == sort_array:
+    if sort_func(arr[:]) == sort_array:
         print("Test Passed")
     else:
         print("Error: Test not passed")
@@ -154,7 +203,7 @@ def full_test(sort_func, test_arr, test_dict):
     func_name = sort_func.__name__
     # Measure time function takes
     start = timer()
-    sort_func(test_arr)
+    sort_func(test_arr[:])
     end = timer()
     # Store time in test dictionary
     test_dict[func_name] = end - start
@@ -168,13 +217,14 @@ if __name__ == "__main__":
     # Test time storage dictionary
     test = {}
     # Large test array
-    ARR = list(np.random.randint(1000, size=1000))
-    full_test(bubble_sort, ARR, test)
+    ARR = list(np.random.randint(1000, size=3000))
+    #full_test(bubble_sort, ARR, test)
     full_test(insertion_sort, ARR, test)
     full_test(merge_sort, ARR, test)
     full_test(heap_sort, ARR, test)
     full_test(sorted, ARR, test)
     full_test(count_sort, ARR, test)
     full_test(selection_sort, ARR, test)
+    full_test(quicksort, ARR, test)
     for key, val in test.items():
         print('{} is {} times as fast as {}'.format('sorted', val / test['sorted'], key))

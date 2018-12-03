@@ -34,7 +34,7 @@ print(slowPointer.data)
 
 
 # Now, let's implement a doubly linked list
-# Note that we default to a single lis
+# Note that we default to a single linked list
 class Dnode(Node):
     def __init__(self, data, next, prev = None):
         Node.__init__(self, data, next)
