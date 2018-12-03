@@ -50,20 +50,20 @@ plt.show()
 def best_long(arr):
     # Define profit as 0 if no position taken
     max_profit = 0
-    # Init strategy, buy and sell prices 
+    # Init strategy, buy and sell prices
     best_strat = None
     buy = 0
     sell = 0
     # change_buy = True if we are looking to enter
     change_buy = True
     # Iterate until second to last item
-    for i in range(0,len(arr)-1):
-        # Get next item 
+    for i in range(len(arr)-1):
+        # Get next item
         sell = arr[i+1]
         if change_buy:
             # Buy if we are looking for entry
             buy = arr[i]
-        # If sell is lower than buy, 
+        # If sell is lower than buy,
         # we will want to instead buy at the sell entry
         if sell < buy:
             # Look for new entry
@@ -72,13 +72,13 @@ def best_long(arr):
         else:
             # If this is best option so far,
             # set max_profit accordingly
-            if sell-buy>max_profit:
-                max_profit = sell-buy
+            if sell - buy > max_profit:
+                max_profit = sell - buy
                 # Get current strategy, i.e. buy and sell indeces
-                best_strat = (arr.index(buy),arr.index(sell))
+                best_strat = (arr.index(buy), arr.index(sell))
             # No longer looking for new entry, just better sell
             change_buy = False
-    return max_profit,best_strat[0],best_strat[1]
+    return max_profit, best_strat[0], best_strat[1]
 
 
 def best_short(arr):
@@ -105,7 +105,7 @@ def best_short(arr):
             change_buy = False
     return max_profit,best_strat[0],best_strat[1]
 
-# A best strategy will incorporate either a short or long position (or both) 
+# A best strategy will incorporate either a short or long position (or both)
 # over a given time period.
 def best_strategy(arr):
     # Get each parameter for each possible entry
@@ -124,7 +124,7 @@ def best_strategy(arr):
         return 'short',short_profit, short_entry, short_exit,'long',long_profit, long_entry, long_exit
 
 
- if __name__ == "__main__":
+if __name__ == "__main__":
     prices = soln
     print(best_long(prices))
     print(best_short(prices))
