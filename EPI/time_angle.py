@@ -7,7 +7,7 @@ def time_angle(time):
     """
     # Get each time measurement
     time = time.split(':')
-    hr, min, sec = time[0],int(time[1]),int(time[2])
+    hr, min, sec = time[0], int(time[1]), int(time[2])
     # Correct for 12 indexed
     if hr == '12':
         hr = 0
