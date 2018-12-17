@@ -29,6 +29,7 @@ def quicksort(A):
     return _quicksort(A, 0, len(A) - 1)
 
 
-A = list(np.random.randint(1000, size=1000))
-B = quicksort(A)
-print(B)
+if __name__ == "__main__":
+    A = list(np.random.randint(1000, size=1000))
+    B = quicksort(A)
+    print(B)

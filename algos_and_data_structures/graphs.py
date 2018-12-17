@@ -29,7 +29,7 @@ class Graph(object):
     def remove(self, node):
         """ Remove all references to node """
 
-        for n, cxns in self._graph.iteritems():
+        for n, cxns in self._graph.items():
             try:
                 cxns.remove(node)
             except KeyError:

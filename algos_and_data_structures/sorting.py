@@ -18,19 +18,17 @@ def bubble_sort(arr):
         float (int) list sorted ascending.
     """
     n = len(arr)
-
     # Traverse through all array elements
     for i in range(n):
-
         # Last i elements are already in place
         for j in range(0, n-i-1):
-
             # traverse the array from 0 to n-i-1
             # Swap if the element found is greater
             # than the next element
             if arr[j] > arr[j+1] :
                 arr[j], arr[j+1] = arr[j+1], arr[j]
     return arr
+
 
 def selection_sort(arr):
     """ Takes as input a real valued list and sorts the values from smallest to largest.
@@ -40,6 +38,7 @@ def selection_sort(arr):
         float (int) list sorted ascending.
     """
     arr_sorted = []
+    # Repeatedly pop min of array and append to output
     while arr:
         lowest = arr[0]
         low_ind = 0
@@ -121,10 +120,14 @@ def count_sort(arr, k=1000):
     Returns:
         int list sorted.
     """
+    # Pre-allocate memory for k bins to store occurrences
     store = [[] for i in range(k)]
+    # Iterate through arr and store each occurence in resp. bin
     for v in arr:
         store[v].append(v)
+    # Initialize output
     output = []
+    # Iterate through bins and add each list to output
     for i in range(k):
         if store[i]:
             output += store[i]
@@ -153,7 +156,7 @@ def partition(A, low, high):
 
 def quicksort(A):
     """ Takes as input a real valued list and sorts the values from smallest to largest.
-    Args: 
+    Args:
         arr: float (int) list
     Returns:
         float (int) list sorted ascending.
@@ -217,8 +220,8 @@ if __name__ == "__main__":
     # Test time storage dictionary
     test = {}
     # Large test array
-    ARR = list(np.random.randint(1000, size=3000))
-    #full_test(bubble_sort, ARR, test)
+    ARR = list(np.random.randint(1000, size=5000))
+    full_test(bubble_sort, ARR, test)
     full_test(insertion_sort, ARR, test)
     full_test(merge_sort, ARR, test)
     full_test(heap_sort, ARR, test)
@@ -226,5 +229,5 @@ if __name__ == "__main__":
     full_test(count_sort, ARR, test)
     full_test(selection_sort, ARR, test)
     full_test(quicksort, ARR, test)
-    for key, val in test.items():
+    for key, val in sorted(test.items(), key=lambda kv: kv[1]):
         print('{} is {} times as fast as {}'.format('sorted', val / test['sorted'], key))

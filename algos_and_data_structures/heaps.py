@@ -5,7 +5,7 @@ import numpy as np
 # MAX_HEAPIFY:      Corrects input of a list from node i down doing single correction
 # Input:            numeric list A, int index i
 # Output:           heapified list A
-def max_heapify(A,i):
+def max_heapify(A, i):
     # Get left index
     l = 2*i+1
     # Get right index
@@ -23,7 +23,7 @@ def max_heapify(A,i):
     # If we changed largest,
     if largest != i:
         # Swap current parent with largest
-        A[i],A[largest] = A[largest],A[i]
+        A[i], A[largest] = A[largest], A[i]
         # and traverse to node we swapped (i.e. least node visited so far)
         max_heapify(A,largest)
 
@@ -33,9 +33,9 @@ def max_heapify(A,i):
 # Output:           fully heapified list A
 def build_max_heap(A):
     # Only need to heapify nodes with children: n//2 is largest index whose node has children
-    for i in range(len(A)//2,-1,-1):
+    for i in range(len(A)//2, -1, -1):
         # Build from the bottom up, visiting each node with children
-        max_heapify(A,i)
+        max_heapify(A, i)
 
 
 # PTREE:    Builds a ptree out of heap A
@@ -57,8 +57,8 @@ def heap_sort(arr):
     while arr:
         arr[0], arr[-1] = arr[-1], arr[0]
         last = arr.pop()
-        out.insert(0,last)
-        max_heapify(arr,0)
+        out.insert(0, last)
+        max_heapify(arr, 0)
     return out
 
 # Test

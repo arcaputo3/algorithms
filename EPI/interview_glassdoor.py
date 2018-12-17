@@ -34,7 +34,7 @@ def num_ones_int(n):
 def first_non_repeated_string(string):
     store = {}
     for v in string:
-        if v in store.keys():
+        if v in store:
             store[v] += 1
         else:
             store[v] = 1
@@ -42,4 +42,15 @@ def first_non_repeated_string(string):
         if val == 1: return key
     return None
 
-print(first_non_repeated_string("aaaabcccdddff"))
+print(first_non_repeated_string("aazaabcccdddff"))
+
+
+def div_wo_div(a, b):
+    # represents a / b w/o div or mod operators
+    div = 0
+    while a >= b:
+        a -= b
+        div += 1
+    return div, a
+
+print(div_wo_div(9, 4))
