@@ -27,6 +27,7 @@ def dist(p, q):
     (x_2, y_2) = q
     return math.sqrt((x_1 - x_2)**2 + (y_1 - y_2)**2)
 
+
 def brute(arr):
     """ Gets closest points split between left and right division.
         BRUTE FORCE O(n^2)
@@ -52,6 +53,7 @@ def brute(arr):
                     min_dist = current_dist
                     p, q = arr[i], arr[j]
     return p, q
+
 
 def closest_split_pair(p_x, p_y, delta):
     """ Gets closest points split between left and right division.

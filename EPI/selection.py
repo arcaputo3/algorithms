@@ -39,3 +39,21 @@ def r_select(x, k):
         else:
             k = k - j - 1
             return r_select(x[(j + 1):], k)
+
+
+def k_th_median(arr, k):
+    """
+    Find the median of elements in an array less than k.
+    """
+    # First, get elements less than k with linear scan
+    arr = [x for x in arr if x < k]
+
+
+def rotate_mat_90(mat):
+    """
+    Rotates a matrix 90 degrees.
+    """
+    return [list(x) for x in zip(*[row[::-1] for row in mat])]
+
+m = [[1, 2, 3, 4], [4, 5, 6, 7], [7, 8, 9, 10]]
+print([max(col) for col in zip(*m)])

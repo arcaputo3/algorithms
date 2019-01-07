@@ -88,9 +88,9 @@ def merge(arr1, arr2):
             out.append(arr2.pop(0))
     # Concat whichever array has more elements
     if arr1:
-        out += arr1
+        out.extend(arr1)
     else:
-        out += arr2
+        out.extend(arr2)
     return out
 
 

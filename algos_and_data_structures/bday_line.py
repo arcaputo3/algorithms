@@ -13,7 +13,7 @@ def birthday_line_problem():
     # First person in line cannot share a birthday with anyone in front
     q = [0]
     # By pigeonhole principle, after 366 people, two are guaranteed to share a birthday (ignoring leap year)
-    for i in range(1,366):
+    for i in range(1, 366):
         # q = 0, 1/365 * 365/365, 2/365 * 365/365 * 364/365, ...
         # q[i] = i/365 * probs[i-1]
         q.append(probs[i-1]*i/365)
@@ -23,7 +23,7 @@ def birthday_line_problem():
     # Get index of max value of q, add 1 to compensate for 0 indexing
     # Also return q for plotting
     # This is where we want to stand!
-    return q.index(max(q))+1, q
+    return q.index(max(q)) + 1, q
 
 
 if __name__ == "__main__":

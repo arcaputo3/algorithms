@@ -84,10 +84,10 @@ def dyn_max_subarray(A):
     start, end = 0, 1
     for i, v in enumerate(A):
         curr_max = max(v, curr_max + v)
+        max_so_far = max(max_so_far, curr_max)
         if curr_max == v:
             start = i
-        max_so_far = max(max_so_far, curr_max)
-        if max_so_far == curr_max:
+        elif max_so_far == curr_max:
             end = i
     return start, end, max_so_far
 
@@ -113,7 +113,7 @@ def full_test(func, test_arr, test_dict):
 
 if __name__ == "__main__":
     test = {}
-    TEST_ARR = np.random.randint(-100, high=100, size=15 )
+    TEST_ARR = np.random.randint(-100, high=100, size=100)
     full_test(brute, TEST_ARR, test)
     full_test(wrap_find_max_subarray, TEST_ARR, test)
     full_test(dyn_max_subarray, TEST_ARR, test)
