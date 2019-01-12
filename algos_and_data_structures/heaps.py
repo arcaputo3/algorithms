@@ -25,7 +25,7 @@ def max_heapify(A, i):
         # Swap current parent with largest
         A[i], A[largest] = A[largest], A[i]
         # and traverse to node we swapped (i.e. least node visited so far)
-        max_heapify(A,largest)
+        max_heapify(A, largest)
 
 
 # BUILD_MAX_HEAP:   Takes any list and converts to a max heap
