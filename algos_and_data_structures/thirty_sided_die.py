@@ -192,7 +192,7 @@ def get_best(p1,p2, n=30):
 
 if __name__ == "__main__":
     # Choose n-sided die
-    n=30
+    n=6
     # Simulate each possible strategy
     # Get each players' payoff for each strategy as well as the optimal strategy (strat)
     EV1,EV2, strat = find_optimal_strategy(iters=10000,n=n)

@@ -1,7 +1,7 @@
 """ Calculating square roots with Newton's Method. """
 
+import numpy as np
 import math
-
 
 def sqrt(n, iters=10):
     """ Calculates the approximated square root of n.
@@ -13,7 +13,7 @@ def sqrt(n, iters=10):
     """
 
     # Choose arbitrary initialization
-    x = n/3
+    x = n*np.random.rand()
     # Repeat Newton's method
     for _ in range(iters):
         x = (1/2)*(x + n/x)
