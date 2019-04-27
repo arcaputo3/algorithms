@@ -25,6 +25,4 @@ def num_dig(r, n):
 
 
 
-
-print(max_weight_IS([10, 20, 5, 6]))
 print(num_dig(6, 600000))

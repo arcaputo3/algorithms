@@ -34,11 +34,14 @@ def dice_choice_game(iters=100000):
     total_count = 0
     for i in range(iters):
         roll = np.random.randint(6)+1
-        if roll > 3:
+        if roll > 4:
             total_count += roll
         else:
             roll = np.random.randint(6)+1
-            total_count += roll
+            if roll > 3:
+                total_count += roll
+            else:
+                total_count += np.random.randint(6)+1
     return total_count/iters
 print(dice_choice_game())
 
@@ -237,10 +240,4 @@ if __name__ == "__main__":
     plt.xlabel('Choice of Player 1')
     plt.ylabel('Expected Payoff')
     plt.show()
-<<<<<<< HEAD:algos_and_data_structures/thirty_sided_die.py
-||||||| merged common ancestors
-
-
-=======
 '''
->>>>>>> c7699a66ccaa1125cba85907c054c98bb44b27b1:algos_and_data_structures/dice_problems.py

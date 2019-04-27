@@ -79,8 +79,8 @@ def wrap_find_max_subarray(A):
 def dyn_max_subarray(A):
     """ Dynamic programming method. """
     # Initialize counters
-    max_so_far = A[0]
-    curr_max = A[0]
+    max_so_far = -float('inf')
+    curr_max = -float('inf')
     start, end = 0, 1
     for i, v in enumerate(A):
         curr_max = max(v, curr_max + v)
